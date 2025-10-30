@@ -1,10 +1,12 @@
-import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.enableCors({
     origin: process.env.CORS_ORIGIN?.split(',') ?? '*',
@@ -20,6 +22,10 @@ async function bootstrap() {
       transformOptions: { enableImplicitConversion: true },
     }),
   );
+
+  app.useStaticAssets(join(process.cwd(), 'uploads'), {
+    prefix: '/uploads/',
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Rleo Motos API')
@@ -43,9 +49,8 @@ async function bootstrap() {
 
   const port = Number(process.env.PORT ?? 3000);
   await app.listen(port);
-  // eslint-disable-next-line no-console
-  console.log(` Rleo Motos API running on http://localhost:${port}/api`);
-  // eslint-disable-next-line no-console
-  console.log(` Swagger UI available at http://localhost:${port}/api/docs`);
+
+  console.log(`🚀 Rleo Motos API running on http://localhost:${port}/api`);
+  console.log(`📘 Swagger UI available at http://localhost:${port}/api/docs`);
 }
 bootstrap();

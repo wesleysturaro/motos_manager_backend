@@ -25,4 +25,3 @@ import { InventoryModule } from './modules/inventory/inventory.module';
   providers: [AppService],
 })
 export class AppModule {}
-
