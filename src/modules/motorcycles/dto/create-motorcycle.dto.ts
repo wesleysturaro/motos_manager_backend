@@ -27,6 +27,12 @@ export class CreateMotorcycleDto {
   @Max(new Date().getFullYear() + 1)
   year?: number;
 
+  @IsOptional()
+  @IsNumber()
+  @Min(1970)
+  @Max(new Date().getFullYear() + 1)
+  modelYear?: number;
+
   @IsString()
   @IsOptional()
   color?: string;

@@ -40,6 +40,9 @@ export class Motorcycle {
   @Column({ type: 'smallint', nullable: true })
   year?: number | null;
 
+  @Column({ name: 'model', type: 'smallint', nullable: true })
+  modelYear?: number | null;
+
   @Column({ type: 'varchar', length: 60, nullable: true })
   color?: string | null;
 

@@ -24,6 +24,10 @@ export class FilterMotorcyclesDto {
 
   @IsOptional()
   @IsNumber()
+  modelYear?: number;
+
+  @IsOptional()
+  @IsNumber()
   minPrice?: number;
 
   @IsOptional()

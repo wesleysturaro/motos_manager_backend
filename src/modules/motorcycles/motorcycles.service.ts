@@ -60,6 +60,10 @@ export class MotorcyclesService {
       qb.andWhere('motorcycle.year = :year', { year: filters.year });
     }
 
+    if (filters.modelYear) {
+      qb.andWhere('motorcycle.model = :modelYear', { modelYear: filters.modelYear });
+    }
+
     if (typeof filters.minPrice === 'number') {
       qb.andWhere('motorcycle.price >= :minPrice', { minPrice: filters.minPrice });
     }
@@ -283,7 +287,9 @@ export class MotorcyclesService {
 
   private calculateCompleteness(motorcycle: Motorcycle) {
     const requiredFields: (keyof Motorcycle)[] = [
-      'modelName','year',
+      'modelName',
+      'year',
+      'modelYear',
       'color',
       'vin',
       'plate',
@@ -329,6 +335,7 @@ export class MotorcyclesService {
       motorcycle.modelName = dto.modelName.trim();
     }
     if (typeof dto.year !== 'undefined') motorcycle.year = dto.year;
+    if (typeof dto.modelYear !== 'undefined') motorcycle.modelYear = dto.modelYear;
     if (typeof dto.color !== 'undefined') motorcycle.color = dto.color ?? null;
     if (typeof dto.vin !== 'undefined') motorcycle.vin = dto.vin ?? null;
     if (typeof dto.plate !== 'undefined') motorcycle.plate = dto.plate ?? null;
@@ -375,6 +382,7 @@ export class MotorcyclesService {
       brand: motorcycle.brand ? { id: motorcycle.brand.id, name: motorcycle.brand.name } : null,
       modelName: motorcycle.modelName,
       year: motorcycle.year,
+      modelYear: motorcycle.modelYear,
       color: motorcycle.color,
       vin: motorcycle.vin,
       plate: motorcycle.plate,

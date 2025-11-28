@@ -43,6 +43,9 @@ export class MotorcycleResponseDto {
   year?: number | null;
 
   @Expose()
+  modelYear?: number | null;
+
+  @Expose()
   color?: string | null;
 
   @Expose()
