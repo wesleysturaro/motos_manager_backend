@@ -53,12 +53,12 @@ export class CreateMotorcycleDto {
   @IsOptional()
   @IsNumber()
   @Min(0)
-  price?: number;
+  fipePrice?: number;
 
   @IsOptional()
   @IsNumber()
   @Min(0)
-  cost?: number;
+  suggestedPrice?: number;
 
   @IsEnum(MotorcycleStatus)
   @IsOptional()

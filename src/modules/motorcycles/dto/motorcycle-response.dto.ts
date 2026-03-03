@@ -58,10 +58,10 @@ export class MotorcycleResponseDto {
   km?: number | null;
 
   @Expose()
-  price?: string | null;
+  fipePrice?: string | null;
 
   @Expose()
-  cost?: string | null;
+  suggestedPrice?: string | null;
 
   @Expose()
   fuel?: FuelType | null;

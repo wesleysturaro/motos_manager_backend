@@ -20,14 +20,18 @@ export class Motorcycle {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
   id!: string;
 
-  @ManyToOne(() => Store, (store) => store.motorcycles, { onDelete: 'RESTRICT' })
+  @ManyToOne(() => Store, (store) => store.motorcycles, {
+    onDelete: 'RESTRICT',
+  })
   @JoinColumn({ name: 'store_id' })
   store!: Store;
 
   @RelationId((motorcycle: Motorcycle) => motorcycle.store)
   storeId!: string;
 
-  @ManyToOne(() => Brand, (brand) => brand.motorcycles, { onDelete: 'RESTRICT' })
+  @ManyToOne(() => Brand, (brand) => brand.motorcycles, {
+    onDelete: 'RESTRICT',
+  })
   @JoinColumn({ name: 'brand_id' })
   brand!: Brand;
 
@@ -55,11 +59,23 @@ export class Motorcycle {
   @Column({ type: 'int', nullable: true })
   km?: number | null;
 
-  @Column({ type: 'numeric', precision: 12, scale: 2, nullable: true })
-  price?: string | null;
+  @Column({
+    name: 'fipe_price',
+    type: 'numeric',
+    precision: 12,
+    scale: 2,
+    nullable: true,
+  })
+  fipePrice?: string | null;
 
-  @Column({ type: 'numeric', precision: 12, scale: 2, nullable: true })
-  cost?: string | null;
+  @Column({
+    name: 'suggested_price',
+    type: 'numeric',
+    precision: 12,
+    scale: 2,
+    nullable: true,
+  })
+  suggestedPrice?: string | null;
 
   @Column({
     type: 'enum',
@@ -121,13 +137,31 @@ export class Motorcycle {
   @Column({ name: 'client_phone', type: 'varchar', length: 30, nullable: true })
   clientPhone?: string | null;
 
-  @Column({ name: 'document_cost', type: 'numeric', precision: 12, scale: 2, nullable: true })
+  @Column({
+    name: 'document_cost',
+    type: 'numeric',
+    precision: 12,
+    scale: 2,
+    nullable: true,
+  })
   documentCost?: string | null;
 
-  @Column({ name: 'maintenance_cost', type: 'numeric', precision: 12, scale: 2, nullable: true })
+  @Column({
+    name: 'maintenance_cost',
+    type: 'numeric',
+    precision: 12,
+    scale: 2,
+    nullable: true,
+  })
   maintenanceCost?: string | null;
 
-  @Column({ name: 'down_payment', type: 'numeric', precision: 12, scale: 2, nullable: true })
+  @Column({
+    name: 'down_payment',
+    type: 'numeric',
+    precision: 12,
+    scale: 2,
+    nullable: true,
+  })
   downPayment?: string | null;
 
   @Column({ name: 'is_deleted', type: 'boolean', default: false })
@@ -162,4 +196,3 @@ export class Motorcycle {
   @OneToMany(() => MotorcyclePhoto, (photo) => photo.motorcycle)
   photos?: MotorcyclePhoto[];
 }
-

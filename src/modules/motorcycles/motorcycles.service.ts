@@ -65,11 +65,11 @@ export class MotorcyclesService {
     }
 
     if (typeof filters.minPrice === 'number') {
-      qb.andWhere('motorcycle.price >= :minPrice', { minPrice: filters.minPrice });
+      qb.andWhere('motorcycle.suggested_price >= :minPrice', { minPrice: filters.minPrice });
     }
 
     if (typeof filters.maxPrice === 'number') {
-      qb.andWhere('motorcycle.price <= :maxPrice', { maxPrice: filters.maxPrice });
+      qb.andWhere('motorcycle.suggested_price <= :maxPrice', { maxPrice: filters.maxPrice });
     }
 
     if (typeof filters.minKm === 'number') {
@@ -294,8 +294,8 @@ export class MotorcyclesService {
       'vin',
       'plate',
       'km',
-      'price',
-      'cost',
+      'fipePrice',
+      'suggestedPrice',
       'fuel',
       'engineCc',
       'powerHp',
@@ -340,10 +340,10 @@ export class MotorcyclesService {
     if (typeof dto.vin !== 'undefined') motorcycle.vin = dto.vin ?? null;
     if (typeof dto.plate !== 'undefined') motorcycle.plate = dto.plate ?? null;
     if (typeof dto.km !== 'undefined') motorcycle.km = dto.km ?? null;
-    if (typeof dto.price !== 'undefined')
-      motorcycle.price = dto.price !== null && dto.price !== undefined ? dto.price.toString() : null;
-    if (typeof dto.cost !== 'undefined')
-      motorcycle.cost = dto.cost !== null && dto.cost !== undefined ? dto.cost.toString() : null;
+    if (typeof dto.fipePrice !== 'undefined')
+      motorcycle.fipePrice = dto.fipePrice !== null && dto.fipePrice !== undefined ? dto.fipePrice.toString() : null;
+    if (typeof dto.suggestedPrice !== 'undefined')
+      motorcycle.suggestedPrice = dto.suggestedPrice !== null && dto.suggestedPrice !== undefined ? dto.suggestedPrice.toString() : null;
     if (typeof dto.status !== 'undefined') motorcycle.status = dto.status;
     if (typeof dto.fuel !== 'undefined') motorcycle.fuel = dto.fuel ?? null;
     if (typeof dto.engineCc !== 'undefined') motorcycle.engineCc = dto.engineCc ?? null;
@@ -387,8 +387,8 @@ export class MotorcyclesService {
       vin: motorcycle.vin,
       plate: motorcycle.plate,
       km: motorcycle.km,
-      price: motorcycle.price,
-      cost: motorcycle.cost,
+      fipePrice: motorcycle.fipePrice,
+      suggestedPrice: motorcycle.suggestedPrice,
       fuel: motorcycle.fuel,
       engineCc: motorcycle.engineCc,
       powerHp: motorcycle.powerHp,
